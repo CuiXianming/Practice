@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="number" v-model.number.lazy="inp1" />
+      <select v-model="operational"
+        ><option value="plus">+</option
+        ><option value="minus">-</option
+        ><option value="multiply">*</option
+        ><option value="divide">÷</option></select
+      >
+      <input type="number" v-model.number.lazy="inp2" />
+      <button @click="compute">=</button>
+      <span v-model="result">{{result}}</span>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          inp1: 0,
+          inp2: 0,
+          operational: 'plus',
+          result: '0',
+        },
+
+        methods: {
+          compute() {
+            switch (this.operational) {
+              case 'plus':
+                this.result = this.inp1 + this.inp2;
+                break;
+              case 'minus':
+                this.result = this.inp1 - this.inp2;
+                break;
+              case 'multiply':
+                this.result = this.inp1 * this.inp2;
+                break;
+              case 'divide':
+                this.result = this.inp1 / this.inp2;
+                break;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

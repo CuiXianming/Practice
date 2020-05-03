@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="control">
+        <input type="text" class="search" v-model="inpValue" />
+        <div>
+          <span
+            class="option"
+            :class="{active: classActive[optionindex]}"
+            v-for="(option,optionindex) in optionList"
+            @click="optionFilter(option,optionindex)"
+            >{{ option }}</span
+          >
+        </div>
+      </div>
+      <ul>
+        <li class="person" v-for="person in personList" :key="person.id">
+          <div class="avatar">
+            <img :src="person.src" :alt="person.des" />
+          </div>
+          <div class="content">
+            <span class="name">{{ person.name }}</span>
+            <span class="des">{{ persson.des }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

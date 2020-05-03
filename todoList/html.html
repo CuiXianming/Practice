@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="header">
+        <div class="container">
+          <div class="logo">toDoList</div>
+          <div class="input-area">
+            <input type="text" @input="getInput" :value="inpValue" />
+            <button @click="addToDoList">添加</button>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <h2>
+          <span>正在进行</span>
+          <span class="mask-num">{{toDoList.length}}</span>
+        </h2>
+        <ul class="mask-list">
+          <li v-for="(toDoEvent,toDoIndex) in toDoList" :key="toDoEvent.id">
+            <div>
+              <input type="checkbox" @change="finishEvevt(toDoIndex)" />
+              <span>{{ toDoEvent.title }}</span>
+            </div>
+
+            <button @click="deleteEvent(toDoIndex,'toDo')">删除</button>
+          </li>
+        </ul>
+      </div>
+      <div class="container">
+        <h2>
+          <span>已经完成</span>
+          <span class="mask-num">{{completeList.length}}</span>
+        </h2>
+        <ul class="mask-list complete-list">
+          <li
+            v-for="(completeEvent,completeIndex) in completeList"
+            :key="completeEvent.id"
+          >
+            <div>
+              <input type="checkbox" @change="noFineshEvevt(completeIndex)" />
+              <span>{{ completeEvent.title }}</span>
+            </div>
+
+            <button @click="deleteEvent(completeIndex,'finish')">删除</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

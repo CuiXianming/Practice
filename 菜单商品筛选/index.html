@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div
+        class="goods"
+        v-for="(goods,goodsIndex) in goodsList"
+        :key="goodsList.id"
+      >
+        <div class="tilel">
+          {{ goods.title }}：
+        </div>
+        <ul class="type-list">
+          <li
+            class="type"
+            v-for="(type,typeIndex) in goods.typeList"
+            :key="type"
+            :class="{active:typeIndex === goods.index}"
+            @click="selectType(typeIndex,goods,type,goodsIndex)"
+          >
+            {{ type }}
+          </li>
+        </ul>
+      </div>
+      <div class="choose-type">
+        <div>已选条件：</div>
+        <span class="no-goods" v-if="!showFilterList">暂时没有过滤条件</span>
+        <ul class="filter-list" v-else>
+          <li v-for="(type,typeListIndex) in filterList">
+            {{ type }}<span
+              class="delete-goods"
+              @click="deleteType(typeListIndex)"
+              >x</span
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

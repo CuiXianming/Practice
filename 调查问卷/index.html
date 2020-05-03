@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="area" v-for="num in 2">
+        <h2>{{ num === 1 ? '提问区' : '回答展示区' }}</h2>
+        <ul>
+          <li v-for="question in questionList" :key="question.id">
+            <h3>{{ question.title }}</h3>
+            <div v-if="num==1">
+              <div v-if="question.type == 'short'">
+                <input type="text" v-model.trim="question.answer" />
+              </div>
+
+              <div v-else-if="question.type == 'single'">
+                <div v-for="sex in question.chooseList">
+                  <input
+                    type="radio"
+                    :value="sex"
+                    v-model.trim="question.answer"
+                  />
+                  <span>{{ sex }}</span>
+                </div>
+              </div>
+
+              <div v-else-if="question.type == 'multiple'">
+                <div v-for="interest in question.chooseList">
+                  <input
+                    type="checkbox"
+                    :value="interest"
+                    v-model.trim="question.answer"
+                  />
+                  <span>{{ interest }}</span>
+                </div>
+              </div>
+
+              <div v-else-if="question.type='long'">
+                <div><textarea v-model.trim="question.answer"></textarea></div>
+              </div>
+            </div>
+            <div v-else><span>{{ question.answer.toString() }}</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
