@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="store">
+        <input type="checkbox" class="select-all" v-model="checkedAll"/>
+        <span class="store-name">渡一教育Web前端</span>
+      </div>
+      <ul class="course-list">
+        <li class="course" v-for="(course,courseIndex) in courseList":key="course.id">
+          <input type="checkbox" class="course-radio" v-model="course.checked"/>
+          <div class="poster">
+            <img
+              :src="course.poster"
+              :alt="course.title"
+            />
+          </div>
+          <div class="content">
+            <div class="title">{{course.title}}</div>
+            <div class="price-container">
+              <div class="price"> ￥{{ course.price }}</div>
+              <div class="control-cart">
+                <button class="minus-cart" @click="minus(course)">-</button>
+                <input type="text" class="cart-num" v-model.number="course.cart" />
+                <button class="add-cart" @click="plus(course)">+</button>
+              </div>
+            </div>
+          </div>
+        </li>       
+         
+      <div class="control">
+        <div class="select">
+          <input type="checkbox" class="select-all" v-model="checkedAll" /> <span >全选</span>
+        </div>
+        <div class="price-container">
+          <span>合计：</span> <span class="price">￥{{selectedTotalPrice}}</span>
+          <button class="accounts">结算({{ checkedNum }})</button>
+        </div>
+      </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
